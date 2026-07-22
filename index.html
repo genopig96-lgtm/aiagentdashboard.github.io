@@ -77,7 +77,14 @@
   .note{font-size:.78rem;color:var(--ink-soft);line-height:1.6;}
   .note code{background:#eef1f6;color:#3a4453;padding:1px 5px;border-radius:5px;font-size:.92em;}
 
-  .topic-tabs{display:flex;flex-wrap:wrap;gap:7px;}
+  .topic-tabs{display:flex;flex-direction:column;gap:10px;}
+  .tab-group{display:flex;align-items:flex-start;gap:12px;}
+  .tab-group-label{flex:0 0 128px;padding-top:8px;font-family:var(--mono);font-size:.63rem;letter-spacing:.08em;
+    text-transform:uppercase;font-weight:600;color:#9aa3b0;line-height:1.3;}
+  .tab-group-items{display:flex;flex-wrap:wrap;gap:7px;flex:1;min-width:0;}
+  .topic-tab.is-empty{opacity:.45;}
+  .topic-tab.is-empty.active{opacity:1;}
+  @media(max-width:820px){.tab-group{flex-direction:column;gap:4px}.tab-group-label{flex:none;padding-top:0}}
   .topic-tab{border:1px solid var(--line-strong);background:#fff;border-radius:999px;padding:7px 14px;font-weight:700;color:#344050;font-size:.85rem;transition:all .12s ease;}
   .topic-tab:hover{border-color:var(--fpt);}
   .topic-tab.active{background:var(--fpt);border-color:var(--fpt);color:#fff;box-shadow:0 3px 10px -2px rgba(232,96,26,.45);}
@@ -113,6 +120,37 @@
   .storage-status{font-size:.74rem;color:var(--ink-soft);line-height:1.45;flex-basis:100%;}
   .storage-status.ok{color:#27745a}.storage-status.warn{color:#a96313}.storage-status.err{color:#b54747}
   .import-warning{margin-top:8px;padding:8px 10px;border-radius:10px;background:#fff6e8;border:1px solid #f2d7aa;color:#8a5a13;font-size:.75rem;line-height:1.5;}
+  .import-warning:empty{display:none;}
+
+  .control-center{padding:14px 16px;}
+  .control-menu{display:flex;flex-wrap:wrap;gap:7px;align-items:center;padding:7px;border:1px solid var(--line);border-radius:12px;background:#f7f9fc;}
+  .control-menu .btn{border-color:#d9e1ec;background:#fff;color:#536681;font-size:.73rem;font-weight:700;}
+  .control-menu .btn.active{background:#eaf2fd;border-color:#a9c4e9;color:#416d9f;box-shadow:0 2px 8px rgba(65,109,159,.08);}
+  .control-menu .btn .chip-status{display:inline-block;margin-left:7px;padding-left:7px;border-left:1px solid #dde5f0;
+    font-weight:600;font-size:.69rem;color:#8794a8;font-family:var(--mono);max-width:210px;overflow:hidden;
+    text-overflow:ellipsis;white-space:nowrap;vertical-align:bottom;}
+  .control-menu .btn .chip-status:empty{display:none;}
+  .control-panels{display:grid;gap:9px;margin-top:9px;}
+  details.control-panel{border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden;}
+  /* Chip ở trên đã đóng vai trò menu. Trước đây mỗi panel còn hiện thêm 1 dòng summary trải rộng
+     => 5 chip + 5 dòng trùng tên, tốn ~300px trước khi tới nội dung. Panel đóng nay ẩn hoàn toàn. */
+  details.control-panel:not([open]){display:none;}
+  details.control-panel>summary{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 13px;list-style:none;cursor:pointer;font-size:.76rem;font-weight:800;color:#52657f;}
+  details.control-panel>summary::-webkit-details-marker{display:none;}
+  details.control-panel>summary::before{content:"⌄";font-size:.95rem;color:#8aa2c0;}
+  details.control-panel[open]>summary{border-bottom:1px solid var(--line);background:#f8fafc;}
+  .control-panel-body{padding:12px 13px;}
+  .control-summary-text{margin-left:auto;max-width:72%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600;color:#7b879a;text-align:right;}
+  .compact-controls{display:flex;flex-wrap:wrap;align-items:end;gap:10px;}
+  .compact-controls .control{min-width:165px;}
+  .compact-controls label{display:block;font-size:.68rem;font-weight:800;color:var(--ink-soft);margin-bottom:4px;text-transform:uppercase;letter-spacing:.035em;}
+  select option:disabled{color:#b7c0cd;background:#f3f5f8;}
+  .period-unavailable-note{font-size:.68rem;color:#8a96a8;margin-top:6px;}
+  .control-panel .period-manager,.control-panel .package-manager{
+    flex-basis:auto;margin:0;padding:0;border:0;background:transparent;
+  }
+  .warning-always{margin-top:9px;}
+  .compare-period-head{font-size:.68rem;line-height:1.35;max-width:190px;white-space:normal;}
 
   @media print{.no-print,.jumpnav{display:none!important;}body{background:#fff;}.card-sec{border:none;box-shadow:none;padding:8px 0;}}
 
@@ -139,14 +177,22 @@
   .ops-dashboard{display:grid;gap:14px;}
   .ops-kpi-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;}
   .ss-kpi-grid{grid-template-columns:repeat(3,minmax(0,1fr));}
-  .ops-kpi{position:relative;min-height:126px;border-radius:5px;padding:17px 18px 12px;overflow:hidden;color:#24405a;box-shadow:0 8px 18px -14px rgba(58,80,112,.42);border:1px solid rgba(255,255,255,.62);}
-  .ops-kpi.tone-teal{background:#bde8df;}
-  .ops-kpi.tone-cyan{background:#bce7ed;}
-  .ops-kpi.tone-amber{background:#f8dfaa;}
-  .ops-kpi.tone-coral{background:#f7c5a7;}
-  .ops-kpi .label{font-size:.72rem;font-weight:700;color:#587086;margin-bottom:7px;}
-  .ops-kpi .value{font:700 1.95rem/1.05 var(--mono);letter-spacing:-.04em;color:#243d58;}
-  .ops-kpi .sub{font-size:.7rem;color:#6f7e91;margin-top:5px;}
+  /* Thẻ KPI: nền trắng + viền trái mang NGHĨA, đồng bộ với stackbar/donut (xanh lá = Selfservice,
+     xanh dương = AutoSR, cam = SOC Agent). Nền tô đậm chỉ dùng khi vượt ngưỡng cảnh báo,
+     để màu mã hoá trạng thái chứ không phải trang trí. */
+  .ops-kpi{position:relative;min-height:126px;border-radius:12px;padding:16px 18px 12px;overflow:hidden;
+    background:var(--card);border:1px solid var(--line);border-left:3px solid #9aa8bb;
+    box-shadow:var(--shadow-sm);transition:box-shadow .15s ease,transform .15s ease;}
+  .ops-kpi:hover{box-shadow:var(--shadow);transform:translateY(-1px);}
+  .ops-kpi.tone-neutral{border-left-color:#9aa8bb;}
+  .ops-kpi.tone-self{border-left-color:var(--self);}
+  .ops-kpi.tone-autosr{border-left-color:var(--autosr);}
+  .ops-kpi.tone-agent{border-left-color:var(--agent);}
+  .ops-kpi.tone-alert{border-left-color:#c0392b;background:#fdf3f2;border-color:#f2d5d1;}
+  .ops-kpi.tone-alert .value{color:#a5342a;}
+  .ops-kpi .label{font-size:.72rem;font-weight:700;color:var(--ink-soft);margin-bottom:7px;}
+  .ops-kpi .value{font:700 1.95rem/1.05 var(--mono);letter-spacing:-.04em;color:var(--ink);}
+  .ops-kpi .sub{font-size:.7rem;color:var(--ink-soft);margin-top:5px;}
   .ops-kpi .spark{height:40px;margin-top:5px;}
   .ops-panel{background:#fff;border:1px solid var(--line);border-radius:5px;box-shadow:var(--shadow);padding:16px 17px;min-width:0;}
   .ops-panel-title{font-size:.8rem;font-weight:700;color:#617795;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:10px;}
@@ -253,31 +299,66 @@
   @media(max-width:1100px){.ops-kpi-grid,.ss-kpi-grid{grid-template-columns:repeat(2,1fr)}.ops-main-grid,.ss-equal-grid{grid-template-columns:1fr}.ops-bottom-grid,.ss-summary-grid{grid-template-columns:1fr 1fr}.ops-bottom-grid>.ops-panel:last-child{grid-column:auto}.ss-summary-grid>.ops-panel:last-child{grid-column:1/-1}}
   @media(max-width:700px){.ops-kpi-grid,.ss-kpi-grid,.ops-bottom-grid,.ss-summary-grid{grid-template-columns:1fr}.ops-bottom-grid>.ops-panel:last-child,.ss-summary-grid>.ops-panel:last-child{grid-column:auto}.ops-kpi{min-height:112px}}
 
+  /*== DỰ PHÒNG KHI KHÔNG TẢI ĐƯỢC BOOTSTRAP CDN ==
+    Các class dưới đây vốn do Bootstrap cung cấp. Nếu mạng công ty chặn cdn.jsdelivr.net hoặc máy offline,
+    thiếu .d-none sẽ khiến TẤT CẢ tab hiện cùng lúc -> trang không dùng được. Khai báo tối thiểu tại đây để
+    dashboard vẫn chạy đúng khi mất CDN. Bootstrap tải sau sẽ ghi đè, không xung đột. ==*/
+  .d-none{display:none!important}
+  .d-flex{display:flex}.d-block{display:block}
+  .flex-wrap{flex-wrap:wrap}.align-items-center{align-items:center}.align-items-end{align-items:flex-end}
+  .align-items-start{align-items:flex-start}.justify-content-between{justify-content:space-between}
+  .text-end{text-align:right}.text-center{text-align:center}.w-100{width:100%}
+  .row{display:flex;flex-wrap:wrap;margin-left:-8px;margin-right:-8px}
+  .row>[class*="col-"],.row>.col{padding-left:8px;padding-right:8px;box-sizing:border-box}
+  .row.g-2>[class*="col-"],.row.g-2>.col{margin-bottom:8px}
+  .row.g-3>[class*="col-"],.row.g-3>.col{margin-bottom:12px}
+  .col-12{flex:0 0 100%;max-width:100%}
+  .col-6{flex:0 0 50%;max-width:50%}
+  .col{flex:1 1 0;min-width:0}
+  .table-responsive{width:100%;overflow-x:auto}
+  .form-check.form-switch{display:flex;align-items:center;gap:8px}
+  .gap-2{gap:8px}.gap-3{gap:12px}
+  .mb-0{margin-bottom:0}.mb-1{margin-bottom:4px}.mb-2{margin-bottom:8px}.mb-3{margin-bottom:12px}.mb-4{margin-bottom:16px}
+  .mt-1{margin-top:4px}.mt-2{margin-top:8px}.mt-3{margin-top:12px}.ms-2{margin-left:8px}.me-3{margin-right:12px}
+  .ps-3{padding-left:12px}.py-4{padding-top:16px;padding-bottom:16px}.p-2{padding:8px}
+  .fw-bold{font-weight:700}.fw-bolder{font-weight:800}.h-100{height:100%}
+  @media(min-width:992px){
+    .col-lg-3{flex:0 0 25%;max-width:25%}
+    .col-lg-4{flex:0 0 33.3333%;max-width:33.3333%}
+    .col-lg-6{flex:0 0 50%;max-width:50%}
+    .col-lg-8{flex:0 0 66.6667%;max-width:66.6667%}
+    .col-lg{flex:1 1 0;min-width:0}
+  }
+  @media(min-width:768px){ .col-md-4{flex:0 0 33.3333%;max-width:33.3333%} .col-md-6{flex:0 0 50%;max-width:50%} }
+  .chart-fallback{display:flex;align-items:center;justify-content:center;height:100%;min-height:120px;
+    text-align:center;padding:14px;color:var(--ink-soft);font-size:.78rem;line-height:1.55;
+    border:1px dashed var(--line-strong);border-radius:10px;background:#fbfcfd}
+
 </style>
 </head><body>
 <div class="brandbar"></div>
 <div class="container-xxl py-4">
   <h1 class="fw-bolder mb-1" style="font-size:1.4rem">Ai Agent Dashboard</h1>
-  <div class="eyebrow mb-3">Cập nhật: 12:01:17 20/7/2026</div>
+  <div class="eyebrow mb-3">Cập nhật: 10:31:09 22/7/2026</div>
   <div id="selfserviceOverviewPane" class=""><div class="ops-dashboard">
-    <div class="ops-kpi-grid ss-kpi-grid"><div class="ops-kpi tone-teal"><div class="label">Traffic</div><div class="value">46.218</div><div class="sub">6603 TB/ngày · Peak 14/07/2026</div><div class="spark"><canvas id="ssSparkInbound" width="384" height="40" style="display: block; box-sizing: border-box; height: 40px; width: 384px;"></canvas></div></div><div class="ops-kpi tone-cyan"><div class="label">Selfservice Rate</div><div class="value">77.0%</div><div class="sub">35.580 selfservice</div><div class="spark"><canvas id="ssSparkSelf" width="384" height="40" style="display: block; box-sizing: border-box; height: 40px; width: 384px;"></canvas></div></div><div class="ops-kpi tone-amber"><div class="label">Transfer To Agent Rate</div><div class="value">23.0%</div><div class="sub">10.638 chuyển Agent</div><div class="spark"><canvas id="ssSparkAgent" width="384" height="40" style="display: block; box-sizing: border-box; height: 40px; width: 384px;"></canvas></div></div></div>
+    <div class="ops-kpi-grid ss-kpi-grid"><div class="ops-kpi tone-neutral"><div class="label">Traffic</div><div class="value">40.503</div><div class="sub">5786 TB/ngày · Peak 16/07/2026</div><div class="spark"><canvas id="ssSparkInbound" width="382" height="40" style="display: block; box-sizing: border-box; height: 40px; width: 382px;"></canvas></div></div><div class="ops-kpi tone-self"><div class="label">Selfservice Rate</div><div class="value">76.8%</div><div class="sub">31.102 selfservice</div><div class="spark"><canvas id="ssSparkSelf" width="382" height="40" style="display: block; box-sizing: border-box; height: 40px; width: 382px;"></canvas></div></div><div class="ops-kpi tone-agent"><div class="label">Transfer To Agent Rate</div><div class="value">23.2%</div><div class="sub">9.401 chuyển Agent</div><div class="spark"><canvas id="ssSparkAgent" width="382" height="40" style="display: block; box-sizing: border-box; height: 40px; width: 382px;"></canvas></div></div></div>
 
     <div class="ss-equal-grid">
       <div class="ops-panel"><div class="ops-panel-title"><span>Traffic theo ngày</span><div class="ops-switch no-print"><button class="active" data-ss-traffic-mode="total">Tổng Traffic</button><button data-ss-traffic-mode="channel">Theo kênh</button></div></div><div class="ops-chart-lg"><canvas id="ssTrafficChart" width="605" height="275" style="display: block; box-sizing: border-box; height: 275px; width: 605px;"></canvas></div></div>
-      <div class="ops-panel"><div class="ops-panel-title"><span>🪙 Token used theo ngày</span><div class="d-flex align-items-center gap-2"><select id="ssTokenChannel" class="form-select form-select-sm no-print" style="width:auto;min-width:126px"><option value="all">Tất cả kênh</option><option value="Hi Chat">Hi Chat</option><option value="Zalo">Zalo</option><option value="Facebook">Facebook</option></select><span class="metric-pill" id="ssTokenMetric">2.99B</span></div></div><div class="ops-chart-lg"><canvas id="ssTokenChart" width="605" height="275" style="display: block; box-sizing: border-box; height: 275px; width: 605px;"></canvas></div></div>
+      <div class="ops-panel"><div class="ops-panel-title"><span>🪙 Token used theo ngày</span><div class="d-flex align-items-center gap-2"><select id="ssTokenChannel" class="form-select form-select-sm no-print" style="width:auto;min-width:126px"><option value="all">Tất cả kênh</option><option value="Hi Chat">Hi Chat</option><option value="Zalo">Zalo</option><option value="Facebook">Facebook</option></select><span class="metric-pill" id="ssTokenMetric">2.61B</span></div></div><div class="ops-chart-lg"><canvas id="ssTokenChart" width="605" height="275" style="display: block; box-sizing: border-box; height: 275px; width: 605px;"></canvas></div></div>
     </div>
 
     <div class="ss-summary-grid">
       <div class="ops-panel"><div class="ops-panel-title"><span>Phân bổ kết quả xử lý</span></div><div class="ops-chart-md"><canvas id="ssOutcomeChart" width="315" height="225" style="display: block; box-sizing: border-box; height: 225px; width: 315px;"></canvas></div><div class="ops-legend"><span><i style="background:#79c8ae"></i>Completed</span><span><i style="background:#87afe9"></i>AutoSR</span><span><i style="background:#f1ad7d"></i>Agent</span></div></div>
       <div class="ops-panel"><div class="ops-panel-title"><span>Selfservice Rate theo topic</span><span class="metric-pill">Selfservice vs Agent</span></div><div class="ops-chart-md"><canvas id="ssTopicChart" width="490" height="225" style="display: block; box-sizing: border-box; height: 225px; width: 490px;"></canvas></div></div>
-      <div class="ops-panel"><div class="ops-panel-title"><span>Hiệu quả theo kênh</span></div><div class="table-responsive"><table class="ops-table"><thead><tr><th>Kênh</th><th class="text-end">Traffic</th><th class="text-end">Selfservice</th><th class="text-end">Agent</th><th class="text-end">Rate</th></tr></thead><tbody><tr><td class="strong">Hi Chat</td><td class="text-end">30.102</td><td class="text-end">24.475</td><td class="text-end">5.627</td><td class="text-end">81.3%</td></tr><tr><td class="strong">Zalo</td><td class="text-end">15.662</td><td class="text-end">10.850</td><td class="text-end">4.812</td><td class="text-end">69.3%</td></tr><tr><td class="strong">Facebook</td><td class="text-end">454</td><td class="text-end">255</td><td class="text-end">199</td><td class="text-end">56.2%</td></tr></tbody></table></div></div>
+      <div class="ops-panel"><div class="ops-panel-title"><span>Hiệu quả theo kênh</span></div><div class="table-responsive"><table class="ops-table"><thead><tr><th>Kênh</th><th class="text-end">Traffic</th><th class="text-end">Selfservice</th><th class="text-end">Agent</th><th class="text-end">Rate</th></tr></thead><tbody><tr><td class="strong">Hi Chat</td><td class="text-end">27.595</td><td class="text-end">22.387</td><td class="text-end">5.208</td><td class="text-end">81.1%</td></tr><tr><td class="strong">Zalo</td><td class="text-end">12.446</td><td class="text-end">8.465</td><td class="text-end">3.981</td><td class="text-end">68.0%</td></tr><tr><td class="strong">Facebook</td><td class="text-end">462</td><td class="text-end">250</td><td class="text-end">212</td><td class="text-end">54.1%</td></tr></tbody></table></div></div>
     </div>
 
   </div></div>
 </div>
 
 <script>
-const REPORT_DATA={"dates":["13/07/2026","14/07/2026","15/07/2026","16/07/2026","17/07/2026","18/07/2026","19/07/2026"],"dailyTotal":[7626,8545,6441,6559,6096,5002,5949],"dailySelfRate":[83.43823760818253,82.1767115272089,82.20773171867722,84.2201555115109,79.60958005249343,81.64734106357457,80.51773407295344],"dailyAgentRate":[16.561762391817467,17.823288472791106,17.792268281322777,15.779844488489097,20.39041994750656,18.35265893642543,19.482265927046562],"traffic":{"channels":["Hi Chat","Zalo","Facebook"],"values":{"Hi Chat":[4984,4856,4163,4440,4021,3537,4101],"Zalo":[2580,3614,2218,2040,2011,1409,1790],"Facebook":[62,75,60,79,64,56,58]}},"outcome":{"completed":24824,"autoSR":10756,"agent":10638,"inbound":46218},"topics":[{"key":"OTHER","label":"QnA và khác","selfservice":20560,"agent":1891,"rate":0.9157721259632088},{"key":"HTKT","label":"Hỗ trợ kỹ thuật","selfservice":14983,"agent":5213,"rate":0.7418795801148742},{"key":"TL","label":"Thanh lý","selfservice":2700,"agent":1114,"rate":0.7079181961195595},{"key":"PHOTO","label":"Photo","selfservice":2504,"agent":256,"rate":0.9072463768115943},{"key":"KH","label":"Khiếu nại","selfservice":1371,"agent":587,"rate":0.7002042900919305},{"key":"DKM","label":"Đăng ký mới","selfservice":1390,"agent":0,"rate":1},{"key":"TMC","label":"Thắc mắc cước","selfservice":474,"agent":548,"rate":0.4637964774951076}],"token":{"dates":["2026-07-13","2026-07-14","2026-07-15","2026-07-16","2026-07-17","2026-07-18","2026-07-19"],"channels":["Hi Chat","Zalo","Facebook"],"values":{"Hi Chat":[257374795,239081554,203330721,240265825,195700417,160443454,192063126],"Zalo":[248748853,286037268,182592165,185967085,188245637,153496487,198717011],"Facebook":[8303839,9196675,9210892,8777253,8956158,6849704,6626455]},"totals":{"Hi Chat":1488259892,"Zalo":1443804506,"Facebook":57920976},"total":2989985374}};
+const REPORT_DATA={"dates":["15/07/2026","16/07/2026","17/07/2026","18/07/2026","19/07/2026","20/07/2026","21/07/2026"],"dailyTotal":[6441,6559,6096,5002,5509,6099,4797],"dailySelfRate":[82.16115510013972,84.29638664430553,79.6259842519685,81.64734106357457,83.6994009802142,80.40662403672734,80.52949760266833],"dailyAgentRate":[17.83884489986027,15.703613355694465,20.374015748031496,18.35265893642543,16.300599019785807,19.59337596327267,19.470502397331664],"traffic":{"channels":["Hi Chat","Zalo","Facebook"],"values":{"Hi Chat":[4163,4440,4021,3537,3945,4025,3464],"Zalo":[2218,2040,2011,1409,1516,1986,1266],"Facebook":[60,79,64,56,48,88,67]}},"outcome":{"completed":22493,"autoSR":8609,"agent":9401,"inbound":40503},"topics":[{"key":"OTHER","label":"QnA và khác","selfservice":18073,"agent":1842,"rate":0.9075069043434597},{"key":"HTKT","label":"Hỗ trợ kỹ thuật","selfservice":13921,"agent":4470,"rate":0.7569463324452178},{"key":"TL","label":"Thanh lý","selfservice":2266,"agent":908,"rate":0.7139256458727158},{"key":"PHOTO","label":"Photo","selfservice":1633,"agent":276,"rate":0.8554216867469879},{"key":"KH","label":"Khiếu nại","selfservice":775,"agent":438,"rate":0.638911788953009},{"key":"DKM","label":"Đăng ký mới","selfservice":912,"agent":0,"rate":1},{"key":"TMC","label":"Thắc mắc cước","selfservice":406,"agent":457,"rate":0.4704519119351101}],"token":{"dates":["2026-07-15","2026-07-16","2026-07-17","2026-07-18","2026-07-19","2026-07-20","2026-07-21"],"channels":["Hi Chat","Zalo","Facebook"],"values":{"Hi Chat":[203330721,240265825,195700417,160443454,192063126,185215349,159515748],"Zalo":[182592165,185967085,188245637,153496487,198717011,188105683,119371460],"Facebook":[9210892,8777253,8956158,6849704,6626455,10911973,7819817]},"totals":{"Hi Chat":1336534640,"Zalo":1216495528,"Facebook":59152252},"total":2612182420}};
 const charts={};
 const fmt=n=>new Intl.NumberFormat("vi-VN").format(Math.round(Number(n)||0));
 const compact=n=>{
