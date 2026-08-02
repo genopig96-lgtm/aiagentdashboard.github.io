@@ -19,9 +19,9 @@
     --mono:'IBM Plex Mono',Consolas,monospace;
   }
   *{box-sizing:border-box}
-  html,body{height:100%;margin:0}
-  body{font-family:var(--sans);background:linear-gradient(180deg,#f7f9fc 0%,#f2f6fb 60%,#f8fafc 100%);color:var(--ink);overflow:hidden}
-  .shell{height:100%;display:grid;grid-template-rows:auto auto minmax(0,1fr)}
+  html,body{min-height:100%;margin:0}
+  body{font-family:var(--sans);background:linear-gradient(180deg,#f7f9fc 0%,#f2f6fb 60%,#f8fafc 100%);color:var(--ink);overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch}
+  .shell{min-height:100%;display:block}
   .brandbar{height:5px;background:linear-gradient(90deg,#8ed8d1,#7fc8e8,#a8a4e6,#f2bd83,#f6a884)}
 
   .summary-wrap{padding:16px 20px 12px}
@@ -54,7 +54,7 @@
   .view-note{font-size:.7rem;color:#7c899d}
 
   .frame-wrap{position:relative;min-height:0;background:var(--paper);border-top:1px solid rgba(223,230,239,.7)}
-  .report-frame{position:absolute;inset:0;width:100%;height:100%;border:0;background:var(--paper);display:none}
+  .report-frame{position:relative;width:100%;height:900px;border:0;background:var(--paper);display:none;overflow:hidden}
   .report-frame.active{display:block}
 
   @media(max-width:1180px){
@@ -73,10 +73,10 @@
   }
   @media print{
     body{overflow:visible}
-    .shell{display:block;height:auto}
+    .shell{display:block;min-height:0}
     .tabs-row{display:none}
     .frame-wrap{height:auto}
-    .report-frame{position:static;display:none;height:100vh}
+    .report-frame{position:static;display:none;height:auto}
     .report-frame.active{display:block}
   }
 </style>
@@ -1164,6 +1164,41 @@ document.addEventListener(&quot;DOMContentLoaded&quot;,()=&gt;{
   };
   const note=document.getElementById("viewNote");
 
+  function resizeFrame(frame){
+    if(!frame) return;
+    try{
+      const doc=frame.contentDocument||frame.contentWindow?.document;
+      if(!doc) return;
+      const body=doc.body, root=doc.documentElement;
+      const height=Math.max(
+        body?.scrollHeight||0,
+        body?.offsetHeight||0,
+        root?.scrollHeight||0,
+        root?.offsetHeight||0,
+        root?.clientHeight||0
+      );
+      if(height>0) frame.style.height=(height+16)+"px";
+    }catch(err){}
+  }
+
+  function observeFrame(frame){
+    frame.addEventListener("load",()=>{
+      resizeFrame(frame);
+      [80,300,800,1600].forEach(ms=>setTimeout(()=>resizeFrame(frame),ms));
+      try{
+        const doc=frame.contentDocument||frame.contentWindow?.document;
+        if(doc&&window.ResizeObserver){
+          const ro=new ResizeObserver(()=>resizeFrame(frame));
+          ro.observe(doc.documentElement);
+          if(doc.body) ro.observe(doc.body);
+          frame._resizeObserver=ro;
+        }
+      }catch(err){}
+    });
+  }
+
+  Object.values(frames).forEach(observeFrame);
+
   function activate(name){
     buttons.forEach(btn=>btn.classList.toggle("active",btn.dataset.tab===name));
     Object.entries(frames).forEach(([key,frame])=>frame.classList.toggle("active",key===name));
@@ -1175,7 +1210,17 @@ document.addEventListener(&quot;DOMContentLoaded&quot;,()=&gt;{
     document.title=name==="recent"
       ?"AI Agent Dashboard — 7 ngày gần nhất"
       :"AI Agent Dashboard — Tháng 07/2026";
+
+    requestAnimationFrame(()=>{
+      resizeFrame(frames[name]);
+      setTimeout(()=>resizeFrame(frames[name]),300);
+    });
   }
+
+  window.addEventListener("resize",()=>{
+    const active=Object.values(frames).find(frame=>frame.classList.contains("active"));
+    resizeFrame(active);
+  });
 
   buttons.forEach(btn=>btn.addEventListener("click",()=>activate(btn.dataset.tab)));
   activate("recent");
