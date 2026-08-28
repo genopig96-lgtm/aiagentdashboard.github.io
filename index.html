@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>AI Agent Dashboard — 20/08/2026 – 26/08/2026</title><style>:root{--paper:#f4f7fb;--card:#fff;--line:#dfe6ef;--ink:#26334d;--soft:#71809a;--shadow:0 10px 28px -22px rgba(39,55,86,.38),0 2px 8px rgba(55,70,100,.06)}*{box-sizing:border-box}html,body{min-height:100%;margin:0}body{font-family:'Be Vietnam Pro',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;background:var(--paper);color:var(--ink);overflow-x:hidden}.export-shell{max-width:1500px;margin:0 auto;padding:16px 18px 28px}.export-title{font-size:1.1rem;font-weight:900;margin:0 0 12px}.export-tabs{display:inline-flex;gap:4px;padding:4px;margin:12px 0;background:#edf2f8;border:1px solid var(--line);border-radius:999px}.export-tabs button{border:0;background:transparent;color:var(--soft);padding:7px 14px;border-radius:999px;font-size:.75rem;font-weight:800;cursor:pointer}.export-tabs button.active{background:#fff;color:#4d6f9e;box-shadow:0 3px 10px rgba(69,88,120,.10)}.export-frame{display:none;width:100%;height:900px;border:0;background:var(--paper);overflow:hidden}.export-frame.active{display:block}@media(max-width:620px){.export-shell{padding:10px}.export-tabs{display:flex;width:100%}.export-tabs button{flex:1;padding:7px 8px}}</style><style>
+<!DOCTYPE html><html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>AI Agent Dashboard — 21/08/2026 – 27/08/2026</title><style>:root{--paper:#f4f7fb;--card:#fff;--line:#dfe6ef;--ink:#26334d;--soft:#71809a;--shadow:0 10px 28px -22px rgba(39,55,86,.38),0 2px 8px rgba(55,70,100,.06)}*{box-sizing:border-box}html,body{min-height:100%;margin:0}body{font-family:'Be Vietnam Pro',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;background:var(--paper);color:var(--ink);overflow-x:hidden}.export-shell{max-width:1500px;margin:0 auto;padding:16px 18px 28px}.export-title{font-size:1.1rem;font-weight:900;margin:0 0 12px}.export-tabs{display:inline-flex;gap:4px;padding:4px;margin:12px 0;background:#edf2f8;border:1px solid var(--line);border-radius:999px}.export-tabs button{border:0;background:transparent;color:var(--soft);padding:7px 14px;border-radius:999px;font-size:.75rem;font-weight:800;cursor:pointer}.export-tabs button.active{background:#fff;color:#4d6f9e;box-shadow:0 3px 10px rgba(69,88,120,.10)}.export-frame{display:none;width:100%;height:900px;border:0;background:var(--paper);overflow:hidden}.export-frame.active{display:block}@media(max-width:620px){.export-shell{padding:10px}.export-tabs{display:flex;width:100%}.export-tabs button{flex:1;padding:7px 8px}}</style><style>
   :root{
     --ink:#161b22; --ink-soft:#5b6472; --paper:#f2f4f7; --card:#ffffff; --line:#e7eaef; --line-strong:#d7dce3;
     --self:#1f8a4c; --self-bg:#e7f5ec; --self-ink:#166238;
@@ -304,6 +304,8 @@
   .ss-summary-delta-preview.delta-up{color:#25825f;}
   .ss-summary-delta-preview.delta-down{color:#c44f4a;}
   .ss-summary-delta-preview.delta-neutral{color:#66758b;}
+  .ss-summary-month-compare-cell{font:800 .67rem var(--mono);white-space:nowrap;color:#52657f;}
+  .ss-summary-month-compare-cell .prev-value{display:block;font:700 .62rem var(--mono);color:#8a96a8;margin-top:3px;}
   .ss-summary-warning{display:inline-flex;align-items:center;gap:5px;margin-top:7px;padding:5px 8px;border-radius:8px;background:#fff6e8;border:1px solid #f0d8ad;color:#94621a;font-size:.66rem;font-weight:700;}
   .ss-summary-metric-table input[value="—"]{background:#fffaf1;border-color:#ead6ac;color:#8a6c3d;}
   .ss-summary-delta-editor{display:grid;grid-template-columns:78px minmax(92px,1fr);gap:5px;align-items:center;}
@@ -315,7 +317,7 @@
   .ss-saved-months{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;}
   .ss-saved-months button{border:1px solid #dce4ef;background:#fff;color:#617795;border-radius:999px;padding:4px 8px;font:700 .64rem var(--mono);cursor:pointer;}
   .ss-saved-months button.active{background:#edf4ff;color:#416fae;border-color:#bcd0ec;}
-  @media(max-width:900px){.ss-month-summary-grid{grid-template-columns:repeat(2,minmax(0,1fr));}.ss-summary-editor-grid{grid-template-columns:1fr;}.ss-summary-metric-table-wrap{overflow-x:auto;}.ss-summary-metric-table{min-width:650px;}}
+  @media(max-width:900px){.ss-month-summary-grid{grid-template-columns:repeat(2,minmax(0,1fr));}.ss-summary-editor-grid{grid-template-columns:1fr;}.ss-summary-metric-table-wrap{overflow-x:auto;}.ss-summary-metric-table{min-width:820px;}}
   @media(max-width:520px){.ss-month-summary-grid{grid-template-columns:1fr;}.ss-view-toolbar{align-items:flex-start;flex-direction:column;}.ss-month-summary{padding:13px;}}
 
   .period-manager,.package-manager{flex-basis:100%;display:flex;flex-wrap:wrap;align-items:end;gap:10px;padding-top:12px;margin-top:2px;border-top:1px dashed var(--line-strong);}
@@ -474,15 +476,26 @@
 .ss-summary-v-list{
   border-top:1px solid #eef2f7;
 }
+.ss-summary-v-colhead,
 .ss-summary-v-row{
   display:grid;
-  grid-template-columns:minmax(190px,220px) minmax(86px,104px) minmax(64px,76px);
+  grid-template-columns:minmax(185px,215px) minmax(82px,98px) minmax(74px,88px) minmax(84px,98px);
   gap:8px;
   align-items:baseline;
   justify-content:start;
   padding:8px 0;
   border-bottom:1px solid #eef2f7;
 }
+.ss-summary-v-colhead{
+  padding:0 0 6px;
+  border-bottom:1px solid #eef2f7;
+  color:#8a96a8;
+  font-size:.62rem;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.035em;
+}
+.ss-summary-v-colhead span:nth-child(n+2){text-align:left;}
 .ss-summary-v-row .metric-name{
   font-size:.79rem;
   font-weight:800;
@@ -502,6 +515,9 @@
   text-align:left;
   font:800 .67rem var(--mono);
   white-space:nowrap;
+}
+.ss-summary-v-row .metric-delta.month-compare{
+  color:#52657f;
 }
 .ss-summary-v-row .metric-delta.delta-up{color:#25825f;}
 .ss-summary-v-row .metric-delta.delta-down{color:#c44f4a;}
@@ -622,8 +638,10 @@
   .ss-summary-axis-chart{height:180px;}
 }
 @media(max-width:560px){
+  .ss-summary-v-colhead{display:none;}
   .ss-summary-v-row{grid-template-columns:1fr auto;gap:6px 10px;}
-  .ss-summary-v-row .metric-delta{grid-column:2;text-align:right;}
+  .ss-summary-v-row .metric-value{grid-column:2;text-align:right;}
+  .ss-summary-v-row .metric-delta{grid-column:1 / -1;text-align:left;}
   .ss-summary-period-controls{grid-template-columns:1fr !important;}
   .ss-summary-range-inputs{grid-template-columns:1fr !important;}
   .ss-summary-range-inputs>span{display:none;}
@@ -641,7 +659,106 @@
   #channelFilterWrap{min-width:100%;}
 }
 
-</style></head><body><main class="export-shell"><h1 class="export-title">AI Agent Dashboard</h1><iframe class="export-frame active" data-export-frame="period" title="20/08/2026 – 26/08/2026" srcdoc="&lt;!DOCTYPE html&gt;&lt;html lang=&quot;vi&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;UTF-8&quot;&gt;&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;&lt;title&gt;20/08/2026 – 26/08/2026&lt;/title&gt;&lt;link href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&amp;family=IBM+Plex+Mono:wght@400;500;600;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;script src=&quot;https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js&quot;&gt;&lt;/script&gt;&lt;style&gt;
+
+/* ===== Agent transfer analysis tab ===== */
+.agent-transfer-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:12px 0 16px;}
+.agent-transfer-kpi{background:#fff;border:1px solid var(--line);border-left:3px solid var(--agent);border-radius:12px;padding:13px 14px;box-shadow:var(--shadow-sm);}
+.agent-transfer-kpi .label{font-size:.7rem;font-weight:800;color:var(--ink-soft);margin-bottom:5px;}
+.agent-transfer-kpi .value{font:800 1.45rem/1.1 var(--mono);color:#30425e;}
+.agent-transfer-kpi .sub{font-size:.66rem;color:#7a889c;margin-top:4px;line-height:1.4;}
+.agent-transfer-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;margin-bottom:16px;}
+.agent-transfer-chart{height:260px;position:relative;}
+.agent-transfer-badge{display:inline-flex;align-items:center;padding:3px 8px;border-radius:999px;background:#fff2e9;color:#ad6337;font:800 .62rem var(--mono);white-space:nowrap;}
+.agent-transfer-table-wrap{max-height:56vh;overflow:auto;border:1px solid var(--line);border-radius:11px;}
+.agent-transfer-table-wrap table{margin:0;}
+.agent-transfer-table-wrap thead th{position:sticky;top:0;z-index:3;background:#f7f9fc;}
+@media(max-width:1050px){.agent-transfer-kpis{grid-template-columns:repeat(2,minmax(0,1fr));}.agent-transfer-grid{grid-template-columns:1fr;}}
+@media(max-width:620px){.agent-transfer-kpis{grid-template-columns:1fr;}}
+
+
+/* ===== Lazy tab generation to reduce import workload ===== */
+.lazy-generate-card{
+  background:#fff;border:1px dashed #d8e2ef;border-radius:14px;padding:22px;
+  box-shadow:var(--shadow);margin-bottom:16px;
+}
+.lazy-generate-card .lazy-title{font-size:1rem;font-weight:900;color:#30425e;margin-bottom:6px;}
+.lazy-generate-card .lazy-sub{color:#71809a;font-size:.78rem;line-height:1.55;max-width:820px;}
+.lazy-generate-card .lazy-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px;}
+.lazy-generate-card .lazy-chip{display:inline-flex;align-items:center;border-radius:999px;background:#edf4ff;border:1px solid #d9e7fa;color:#58739b;padding:4px 8px;font:800 .62rem var(--mono);}
+
+</style></head><body><main class="export-shell"><h1 class="export-title">AI Agent Dashboard</h1><section class="ss-month-summary ss-summary-vertical-auto " data-summary-type="range" data-summary-period="2026-08-21..2026-08-27">
+    <div class="ss-summary-v-layout">
+      <div class="ss-summary-v-left">
+        <div class="ss-month-summary-head">
+          <div class="ss-month-summary-title">Summary 21/08/2026 – 27/08/2026</div>
+          <div class="ss-month-summary-period">RANGE SNAPSHOT</div>
+        </div>
+        <div class="ss-summary-v-list"><div class="ss-summary-v-colhead"><span>Chỉ số</span><span>Kỳ này</span><span>Kỳ trước</span><span>Tháng trước</span></div><div class="ss-summary-v-row" data-summary-card-metric="traffic">
+    <div class="metric-name">📊 Traffic</div>
+    <div class="metric-value">43.365</div>
+    <div class="metric-delta delta-down" title="14/08/2026 – 20/08/2026">▼ 12,4%</div>
+    <div class="metric-delta month-compare delta-up" title="21/07/2026 – 27/07/2026">▲ 35,7%</div>
+  </div><div class="ss-summary-v-row" data-summary-card-metric="token">
+    <div class="metric-name">🔹 Token used</div>
+    <div class="metric-value">2,13B</div>
+    <div class="metric-delta delta-down" title="14/08/2026 – 20/08/2026">▼ 39,9%</div>
+    <div class="metric-delta month-compare delta-up" title="21/07/2026 – 27/07/2026">▲ 7,4%</div>
+  </div><div class="ss-summary-v-row" data-summary-card-metric="completion">
+    <div class="metric-name">🆗 Completion</div>
+    <div class="metric-value">58,6%</div>
+    <div class="metric-delta delta-neutral" title="14/08/2026 – 20/08/2026">▼ 0,0%</div>
+    <div class="metric-delta month-compare delta-down" title="21/07/2026 – 27/07/2026">▼ 4,5%</div>
+  </div><div class="ss-summary-v-row" data-summary-card-metric="autocl">
+    <div class="metric-name">🔹 AutoCL</div>
+    <div class="metric-value">9,5%</div>
+    <div class="metric-delta delta-down" title="14/08/2026 – 20/08/2026">▼ 1,9%</div>
+    <div class="metric-delta month-compare delta-neutral" title="21/07/2026 – 27/07/2026">▼ 0,1%</div>
+  </div><div class="ss-summary-v-row" data-summary-card-metric="autosrDvkh">
+    <div class="metric-name">🔹 AutoSR DVKH</div>
+    <div class="metric-value">5,6%</div>
+    <div class="metric-delta delta-down" title="14/08/2026 – 20/08/2026">▼ 2,4%</div>
+    <div class="metric-delta month-compare delta-neutral" title="21/07/2026 – 27/07/2026">▼ 0,0%</div>
+  </div><div class="ss-summary-v-row" data-summary-card-metric="csat">
+    <div class="metric-name">🥰 KH hài lòng (CSAT 4,5)</div>
+    <div class="metric-value">80,0%</div>
+    <div class="metric-delta delta-up" title="14/08/2026 – 20/08/2026">▲ 0,8%</div>
+    <div class="metric-delta month-compare delta-down" title="21/07/2026 – 27/07/2026">▼ 1,2%</div>
+  </div></div>
+        
+      </div>
+      <div class="ss-summary-v-charts">
+    <div class="ss-summary-v-chart-head">
+      <div><div class="ss-summary-v-chart-title">Biểu đồ tuần/kỳ đã Generate</div><div class="ss-summary-v-chart-sub">2 biểu đồ lấy tự động theo dữ liệu ngày trong kỳ</div></div>
+      <div class="ss-summary-v-chart-badge">21/08/2026 – 27/08/2026</div>
+    </div>
+    <div class="ss-summary-mini-grid"><div class="ss-summary-mini">
+    <div class="ss-summary-mini-title"><b>Traffic</b><span>43.365</span></div>
+    <svg class="ss-summary-axis-chart" viewBox="0 0 260 170" preserveAspectRatio="xMidYMid meet" aria-label="Traffic theo ngày">
+      <line class="ss-summary-grid-line" x1="46" y1="18.0" x2="250" y2="18.0"></line><line class="ss-summary-grid-line" x1="46" y1="77.0" x2="250" y2="77.0"></line><line class="ss-summary-grid-line" x1="46" y1="136.0" x2="250" y2="136.0"></line>
+      <line class="ss-summary-axis" x1="46" y1="18" x2="46" y2="136"></line>
+      <line class="ss-summary-axis" x1="46" y1="136" x2="250" y2="136"></line>
+      <text class="ss-summary-y-label" x="40" y="21.0">7.588</text><text class="ss-summary-y-label" x="40" y="80.0">5.794</text><text class="ss-summary-y-label" x="40" y="139.0">4.000</text>
+      <polyline class="ss-summary-line-traffic" points="46.0,68.3 80.0,28.2 114.0,37.0 148.0,80.3 182.0,82.9 216.0,85.1 250.0,64.9"></polyline>
+      <circle class="ss-summary-dot traffic" cx="46.0" cy="68.3" r="3"></circle><circle class="ss-summary-dot traffic" cx="80.0" cy="28.2" r="3"></circle><circle class="ss-summary-dot traffic" cx="114.0" cy="37.0" r="3"></circle><circle class="ss-summary-dot traffic" cx="148.0" cy="80.3" r="3"></circle><circle class="ss-summary-dot traffic" cx="182.0" cy="82.9" r="3"></circle><circle class="ss-summary-dot traffic" cx="216.0" cy="85.1" r="3"></circle><circle class="ss-summary-dot traffic" cx="250.0" cy="64.9" r="3"></circle>
+      <text class="ss-summary-tick" x="46.0" y="160" text-anchor="middle">21/08</text><text class="ss-summary-tick" x="114.0" y="160" text-anchor="middle">23/08</text><text class="ss-summary-tick" x="182.0" y="160" text-anchor="middle">25/08</text><text class="ss-summary-tick" x="250.0" y="160" text-anchor="middle">27/08</text>
+    </svg>
+    <div class="ss-summary-mini-note">Trục Y: Daisy Total trong kỳ đã chọn</div>
+  </div><div class="ss-summary-mini">
+    <div class="ss-summary-mini-title"><b>Selfservice Rate</b><span>73,7%</span></div>
+    <svg class="ss-summary-axis-chart" viewBox="0 0 260 170" preserveAspectRatio="xMidYMid meet" aria-label="Selfservice Rate theo ngày">
+      <line class="ss-summary-grid-line" x1="46" y1="18.0" x2="250" y2="18.0"></line><line class="ss-summary-grid-line" x1="46" y1="77.0" x2="250" y2="77.0"></line><line class="ss-summary-grid-line" x1="46" y1="136.0" x2="250" y2="136.0"></line>
+      <line class="ss-summary-axis" x1="46" y1="18" x2="46" y2="136"></line>
+      <line class="ss-summary-axis" x1="46" y1="136" x2="250" y2="136"></line>
+      <text class="ss-summary-y-label" x="40" y="21.0">82%</text><text class="ss-summary-y-label" x="40" y="80.0">74%</text><text class="ss-summary-y-label" x="40" y="139.0">65%</text>
+      <polyline class="ss-summary-line-self" points="46.0,77.4 80.0,37.7 114.0,116.3 148.0,59.1 182.0,71.0 216.0,62.1 250.0,107.2"></polyline>
+      <circle class="ss-summary-dot self" cx="46.0" cy="77.4" r="3"></circle><circle class="ss-summary-dot self" cx="80.0" cy="37.7" r="3"></circle><circle class="ss-summary-dot self" cx="114.0" cy="116.3" r="3"></circle><circle class="ss-summary-dot self" cx="148.0" cy="59.1" r="3"></circle><circle class="ss-summary-dot self" cx="182.0" cy="71.0" r="3"></circle><circle class="ss-summary-dot self" cx="216.0" cy="62.1" r="3"></circle><circle class="ss-summary-dot self" cx="250.0" cy="107.2" r="3"></circle>
+      <text class="ss-summary-tick" x="46.0" y="160" text-anchor="middle">21/08</text><text class="ss-summary-tick" x="114.0" y="160" text-anchor="middle">23/08</text><text class="ss-summary-tick" x="182.0" y="160" text-anchor="middle">25/08</text><text class="ss-summary-tick" x="250.0" y="160" text-anchor="middle">27/08</text>
+    </svg>
+    <div class="ss-summary-mini-note">Trục Y: % Selfservice = Completion + AutoCL + AutoSR DVKH</div>
+  </div></div>
+  </div>
+    </div>
+  </section><iframe class="export-frame active" data-export-frame="period" title="21/08/2026 – 27/08/2026" srcdoc="&lt;!DOCTYPE html&gt;&lt;html lang=&quot;vi&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;UTF-8&quot;&gt;&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;&lt;title&gt;21/08/2026 – 27/08/2026&lt;/title&gt;&lt;link href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&amp;family=IBM+Plex+Mono:wght@400;500;600;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;script src=&quot;https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js&quot;&gt;&lt;/script&gt;&lt;style&gt;
   :root{
     --ink:#161b22; --ink-soft:#5b6472; --paper:#f2f4f7; --card:#ffffff; --line:#e7eaef; --line-strong:#d7dce3;
     --self:#1f8a4c; --self-bg:#e7f5ec; --self-ink:#166238;
@@ -947,6 +1064,8 @@
   .ss-summary-delta-preview.delta-up{color:#25825f;}
   .ss-summary-delta-preview.delta-down{color:#c44f4a;}
   .ss-summary-delta-preview.delta-neutral{color:#66758b;}
+  .ss-summary-month-compare-cell{font:800 .67rem var(--mono);white-space:nowrap;color:#52657f;}
+  .ss-summary-month-compare-cell .prev-value{display:block;font:700 .62rem var(--mono);color:#8a96a8;margin-top:3px;}
   .ss-summary-warning{display:inline-flex;align-items:center;gap:5px;margin-top:7px;padding:5px 8px;border-radius:8px;background:#fff6e8;border:1px solid #f0d8ad;color:#94621a;font-size:.66rem;font-weight:700;}
   .ss-summary-metric-table input[value=&quot;—&quot;]{background:#fffaf1;border-color:#ead6ac;color:#8a6c3d;}
   .ss-summary-delta-editor{display:grid;grid-template-columns:78px minmax(92px,1fr);gap:5px;align-items:center;}
@@ -958,7 +1077,7 @@
   .ss-saved-months{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;}
   .ss-saved-months button{border:1px solid #dce4ef;background:#fff;color:#617795;border-radius:999px;padding:4px 8px;font:700 .64rem var(--mono);cursor:pointer;}
   .ss-saved-months button.active{background:#edf4ff;color:#416fae;border-color:#bcd0ec;}
-  @media(max-width:900px){.ss-month-summary-grid{grid-template-columns:repeat(2,minmax(0,1fr));}.ss-summary-editor-grid{grid-template-columns:1fr;}.ss-summary-metric-table-wrap{overflow-x:auto;}.ss-summary-metric-table{min-width:650px;}}
+  @media(max-width:900px){.ss-month-summary-grid{grid-template-columns:repeat(2,minmax(0,1fr));}.ss-summary-editor-grid{grid-template-columns:1fr;}.ss-summary-metric-table-wrap{overflow-x:auto;}.ss-summary-metric-table{min-width:820px;}}
   @media(max-width:520px){.ss-month-summary-grid{grid-template-columns:1fr;}.ss-view-toolbar{align-items:flex-start;flex-direction:column;}.ss-month-summary{padding:13px;}}
 
   .period-manager,.package-manager{flex-basis:100%;display:flex;flex-wrap:wrap;align-items:end;gap:10px;padding-top:12px;margin-top:2px;border-top:1px dashed var(--line-strong);}
@@ -1117,15 +1236,26 @@
 .ss-summary-v-list{
   border-top:1px solid #eef2f7;
 }
+.ss-summary-v-colhead,
 .ss-summary-v-row{
   display:grid;
-  grid-template-columns:minmax(190px,220px) minmax(86px,104px) minmax(64px,76px);
+  grid-template-columns:minmax(185px,215px) minmax(82px,98px) minmax(74px,88px) minmax(84px,98px);
   gap:8px;
   align-items:baseline;
   justify-content:start;
   padding:8px 0;
   border-bottom:1px solid #eef2f7;
 }
+.ss-summary-v-colhead{
+  padding:0 0 6px;
+  border-bottom:1px solid #eef2f7;
+  color:#8a96a8;
+  font-size:.62rem;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.035em;
+}
+.ss-summary-v-colhead span:nth-child(n+2){text-align:left;}
 .ss-summary-v-row .metric-name{
   font-size:.79rem;
   font-weight:800;
@@ -1145,6 +1275,9 @@
   text-align:left;
   font:800 .67rem var(--mono);
   white-space:nowrap;
+}
+.ss-summary-v-row .metric-delta.month-compare{
+  color:#52657f;
 }
 .ss-summary-v-row .metric-delta.delta-up{color:#25825f;}
 .ss-summary-v-row .metric-delta.delta-down{color:#c44f4a;}
@@ -1265,8 +1398,10 @@
   .ss-summary-axis-chart{height:180px;}
 }
 @media(max-width:560px){
+  .ss-summary-v-colhead{display:none;}
   .ss-summary-v-row{grid-template-columns:1fr auto;gap:6px 10px;}
-  .ss-summary-v-row .metric-delta{grid-column:2;text-align:right;}
+  .ss-summary-v-row .metric-value{grid-column:2;text-align:right;}
+  .ss-summary-v-row .metric-delta{grid-column:1 / -1;text-align:left;}
   .ss-summary-period-controls{grid-template-columns:1fr !important;}
   .ss-summary-range-inputs{grid-template-columns:1fr !important;}
   .ss-summary-range-inputs&gt;span{display:none;}
@@ -1284,9 +1419,36 @@
   #channelFilterWrap{min-width:100%;}
 }
 
-&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div class=&quot;container-xxl py-4&quot;&gt;&lt;div class=&quot;ops-dashboard&quot;&gt;&lt;div class=&quot;ops-kpi-grid ss-kpi-grid&quot;&gt;&lt;div class=&quot;ops-kpi tone-neutral&quot;&gt;&lt;div class=&quot;label&quot;&gt;Traffic&lt;/div&gt;&lt;div class=&quot;value&quot;&gt;44.188&lt;/div&gt;&lt;div class=&quot;sub&quot;&gt;6313 TB/ngày · Peak 22/08/2026&lt;/div&gt;&lt;div class=&quot;spark&quot;&gt;&lt;canvas id=&quot;ssSparkInbound&quot;&gt;&lt;/canvas&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ops-kpi tone-self&quot;&gt;&lt;div class=&quot;label&quot;&gt;Selfservice Rate&lt;/div&gt;&lt;div class=&quot;value&quot;&gt;74.1%&lt;/div&gt;&lt;div class=&quot;sub&quot;&gt;32.732 selfservice&lt;/div&gt;&lt;div class=&quot;spark&quot;&gt;&lt;canvas id=&quot;ssSparkSelf&quot;&gt;&lt;/canvas&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ops-kpi tone-agent&quot;&gt;&lt;div class=&quot;label&quot;&gt;Transfer To Agent Rate&lt;/div&gt;&lt;div class=&quot;value&quot;&gt;25.9%&lt;/div&gt;&lt;div class=&quot;sub&quot;&gt;11.456 chuyển Agent&lt;/div&gt;&lt;div class=&quot;spark&quot;&gt;&lt;canvas id=&quot;ssSparkAgent&quot;&gt;&lt;/canvas&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ss-equal-grid&quot;&gt;&lt;div class=&quot;ops-panel&quot;&gt;&lt;div class=&quot;ops-panel-title&quot;&gt;&lt;span&gt;Traffic theo ngày&lt;/span&gt;&lt;div class=&quot;ops-switch no-print&quot;&gt;&lt;button class=&quot;active&quot; data-ss-traffic-mode=&quot;total&quot;&gt;Tổng Traffic&lt;/button&gt;&lt;button data-ss-traffic-mode=&quot;channel&quot;&gt;Theo kênh&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ops-chart-lg&quot;&gt;&lt;canvas id=&quot;ssTrafficChart&quot;&gt;&lt;/canvas&gt;&lt;/div&gt;&lt;div class=&quot;note mt-2&quot;&gt;Traffic Inbound · đã loại Chat Outbound và fee_remind.&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ops-panel&quot;&gt;&lt;div class=&quot;ops-panel-title&quot;&gt;&lt;span&gt;🪙 Token used theo ngày&lt;/span&gt;&lt;div class=&quot;d-flex align-items-center gap-2&quot;&gt;&lt;select id=&quot;ssTokenChannel&quot; class=&quot;form-select form-select-sm no-print&quot; style=&quot;width:auto;min-width:126px&quot;&gt;&lt;option value=&quot;all&quot;&gt;Tất cả kênh&lt;/option&gt;&lt;option value=&quot;Zalo&quot;&gt;Zalo&lt;/option&gt;&lt;option value=&quot;Hi Chat&quot;&gt;Hi Chat&lt;/option&gt;&lt;option value=&quot;Facebook&quot;&gt;Facebook&lt;/option&gt;&lt;/select&gt;&lt;span class=&quot;metric-pill&quot; id=&quot;ssTokenMetric&quot;&gt;2.00B&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ops-chart-lg&quot;&gt;&lt;canvas id=&quot;ssTokenChart&quot;&gt;&lt;/canvas&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ss-summary-grid&quot;&gt;&lt;div class=&quot;ops-panel&quot;&gt;&lt;div class=&quot;ops-panel-title&quot;&gt;&lt;span&gt;Phân bổ kết quả xử lý&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;ops-chart-md&quot;&gt;&lt;canvas id=&quot;ssOutcomeChart&quot;&gt;&lt;/canvas&gt;&lt;/div&gt;&lt;div class=&quot;ops-legend&quot;&gt;&lt;span&gt;&lt;i style=&quot;background:#79c8ae&quot;&gt;&lt;/i&gt;Completed&lt;/span&gt;&lt;span&gt;&lt;i style=&quot;background:#87afe9&quot;&gt;&lt;/i&gt;AutoSR&lt;/span&gt;&lt;span&gt;&lt;i style=&quot;background:#f1ad7d&quot;&gt;&lt;/i&gt;Agent&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ops-panel&quot;&gt;&lt;div class=&quot;ops-panel-title&quot;&gt;&lt;span&gt;Selfservice Rate theo topic&lt;/span&gt;&lt;span class=&quot;metric-pill&quot;&gt;Selfservice vs Agent&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;ops-chart-md&quot;&gt;&lt;canvas id=&quot;ssTopicChart&quot;&gt;&lt;/canvas&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ops-panel&quot;&gt;&lt;div class=&quot;ops-panel-title&quot;&gt;&lt;span&gt;Hiệu quả theo kênh&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;table-responsive&quot;&gt;&lt;table class=&quot;ops-table&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Kênh&lt;/th&gt;&lt;th class=&quot;text-end&quot;&gt;Traffic&lt;/th&gt;&lt;th class=&quot;text-end&quot;&gt;Selfservice&lt;/th&gt;&lt;th class=&quot;text-end&quot;&gt;Agent&lt;/th&gt;&lt;th class=&quot;text-end&quot;&gt;Rate&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;strong&quot;&gt;Hi Chat&lt;/td&gt;&lt;td class=&quot;text-end&quot;&gt;31.043&lt;/td&gt;&lt;td class=&quot;text-end&quot;&gt;24.409&lt;/td&gt;&lt;td class=&quot;text-end&quot;&gt;6.634&lt;/td&gt;&lt;td class=&quot;text-end&quot;&gt;78.6%&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&quot;strong&quot;&gt;Zalo&lt;/td&gt;&lt;td class=&quot;text-end&quot;&gt;12.587&lt;/td&gt;&lt;td class=&quot;text-end&quot;&gt;7.957&lt;/td&gt;&lt;td class=&quot;text-end&quot;&gt;4.630&lt;/td&gt;&lt;td class=&quot;text-end&quot;&gt;63.2%&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&quot;strong&quot;&gt;Facebook&lt;/td&gt;&lt;td class=&quot;text-end&quot;&gt;558&lt;/td&gt;&lt;td class=&quot;text-end&quot;&gt;366&lt;/td&gt;&lt;td class=&quot;text-end&quot;&gt;192&lt;/td&gt;&lt;td class=&quot;text-end&quot;&gt;65.6%&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+
+/* ===== Agent transfer analysis tab ===== */
+.agent-transfer-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:12px 0 16px;}
+.agent-transfer-kpi{background:#fff;border:1px solid var(--line);border-left:3px solid var(--agent);border-radius:12px;padding:13px 14px;box-shadow:var(--shadow-sm);}
+.agent-transfer-kpi .label{font-size:.7rem;font-weight:800;color:var(--ink-soft);margin-bottom:5px;}
+.agent-transfer-kpi .value{font:800 1.45rem/1.1 var(--mono);color:#30425e;}
+.agent-transfer-kpi .sub{font-size:.66rem;color:#7a889c;margin-top:4px;line-height:1.4;}
+.agent-transfer-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;margin-bottom:16px;}
+.agent-transfer-chart{height:260px;position:relative;}
+.agent-transfer-badge{display:inline-flex;align-items:center;padding:3px 8px;border-radius:999px;background:#fff2e9;color:#ad6337;font:800 .62rem var(--mono);white-space:nowrap;}
+.agent-transfer-table-wrap{max-height:56vh;overflow:auto;border:1px solid var(--line);border-radius:11px;}
+.agent-transfer-table-wrap table{margin:0;}
+.agent-transfer-table-wrap thead th{position:sticky;top:0;z-index:3;background:#f7f9fc;}
+@media(max-width:1050px){.agent-transfer-kpis{grid-template-columns:repeat(2,minmax(0,1fr));}.agent-transfer-grid{grid-template-columns:1fr;}}
+@media(max-width:620px){.agent-transfer-kpis{grid-template-columns:1fr;}}
+
+
+/* ===== Lazy tab generation to reduce import workload ===== */
+.lazy-generate-card{
+  background:#fff;border:1px dashed #d8e2ef;border-radius:14px;padding:22px;
+  box-shadow:var(--shadow);margin-bottom:16px;
+}
+.lazy-generate-card .lazy-title{font-size:1rem;font-weight:900;color:#30425e;margin-bottom:6px;}
+.lazy-generate-card .lazy-sub{color:#71809a;font-size:.78rem;line-height:1.55;max-width:820px;}
+.lazy-generate-card .lazy-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px;}
+.lazy-generate-card .lazy-chip{display:inline-flex;align-items:center;border-radius:999px;background:#edf4ff;border:1px solid #d9e7fa;color:#58739b;padding:4px 8px;font:800 .62rem var(--mono);}
+
+&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div class=&quot;container-xxl py-4&quot;&gt;&lt;div class=&quot;ops-dashboard&quot;&gt;&lt;div class=&quot;ops-kpi-grid ss-kpi-grid&quot;&gt;&lt;div class=&quot;ops-kpi tone-neutral&quot;&gt;&lt;div class=&quot;label&quot;&gt;Traffic&lt;/div&gt;&lt;div class=&quot;value&quot;&gt;43.365&lt;/div&gt;&lt;div class=&quot;sub&quot;&gt;6195 TB/ngày · Peak 22/08/2026&lt;/div&gt;&lt;div class=&quot;spark&quot;&gt;&lt;canvas id=&quot;ssSparkInbound&quot;&gt;&lt;/canvas&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ops-kpi tone-self&quot;&gt;&lt;div class=&quot;label&quot;&gt;Selfservice Rate&lt;/div&gt;&lt;div class=&quot;value&quot;&gt;73.7%&lt;/div&gt;&lt;div class=&quot;sub&quot;&gt;31.979 selfservice&lt;/div&gt;&lt;div class=&quot;spark&quot;&gt;&lt;canvas id=&quot;ssSparkSelf&quot;&gt;&lt;/canvas&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ops-kpi tone-agent&quot;&gt;&lt;div class=&quot;label&quot;&gt;Transfer To Agent Rate&lt;/div&gt;&lt;div class=&quot;value&quot;&gt;26.3%&lt;/div&gt;&lt;div class=&quot;sub&quot;&gt;11.386 chuyển Agent&lt;/div&gt;&lt;div class=&quot;spark&quot;&gt;&lt;canvas id=&quot;ssSparkAgent&quot;&gt;&lt;/canvas&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ss-equal-grid&quot;&gt;&lt;div class=&quot;ops-panel&quot;&gt;&lt;div class=&quot;ops-panel-title&quot;&gt;&lt;span&gt;Traffic theo ngày&lt;/span&gt;&lt;div class=&quot;ops-switch no-print&quot;&gt;&lt;button class=&quot;active&quot; data-ss-traffic-mode=&quot;total&quot;&gt;Tổng Traffic&lt;/button&gt;&lt;button data-ss-traffic-mode=&quot;channel&quot;&gt;Theo kênh&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ops-chart-lg&quot;&gt;&lt;canvas id=&quot;ssTrafficChart&quot;&gt;&lt;/canvas&gt;&lt;/div&gt;&lt;div class=&quot;note mt-2&quot;&gt;Traffic Inbound · đã loại Chat Outbound và fee_remind.&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ops-panel&quot;&gt;&lt;div class=&quot;ops-panel-title&quot;&gt;&lt;span&gt;🪙 Token used theo ngày&lt;/span&gt;&lt;div class=&quot;d-flex align-items-center gap-2&quot;&gt;&lt;select id=&quot;ssTokenChannel&quot; class=&quot;form-select form-select-sm no-print&quot; style=&quot;width:auto;min-width:126px&quot;&gt;&lt;option value=&quot;all&quot;&gt;Tất cả kênh&lt;/option&gt;&lt;option value=&quot;Zalo&quot;&gt;Zalo&lt;/option&gt;&lt;option value=&quot;Hi Chat&quot;&gt;Hi Chat&lt;/option&gt;&lt;option value=&quot;Facebook&quot;&gt;Facebook&lt;/option&gt;&lt;/select&gt;&lt;span class=&quot;metric-pill&quot; id=&quot;ssTokenMetric&quot;&gt;2.13B&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ops-chart-lg&quot;&gt;&lt;canvas id=&quot;ssTokenChart&quot;&gt;&lt;/canvas&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ss-summary-grid&quot;&gt;&lt;div class=&quot;ops-panel&quot;&gt;&lt;div class=&quot;ops-panel-title&quot;&gt;&lt;span&gt;Phân bổ kết quả xử lý&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;ops-chart-md&quot;&gt;&lt;canvas id=&quot;ssOutcomeChart&quot;&gt;&lt;/canvas&gt;&lt;/div&gt;&lt;div class=&quot;ops-legend&quot;&gt;&lt;span&gt;&lt;i style=&quot;background:#79c8ae&quot;&gt;&lt;/i&gt;Completed&lt;/span&gt;&lt;span&gt;&lt;i style=&quot;background:#87afe9&quot;&gt;&lt;/i&gt;AutoSR&lt;/span&gt;&lt;span&gt;&lt;i style=&quot;background:#f1ad7d&quot;&gt;&lt;/i&gt;Agent&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ops-panel&quot;&gt;&lt;div class=&quot;ops-panel-title&quot;&gt;&lt;span&gt;Selfservice Rate theo topic&lt;/span&gt;&lt;span class=&quot;metric-pill&quot;&gt;Selfservice vs Agent&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;ops-chart-md&quot;&gt;&lt;canvas id=&quot;ssTopicChart&quot;&gt;&lt;/canvas&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ops-panel&quot;&gt;&lt;div class=&quot;ops-panel-title&quot;&gt;&lt;span&gt;Hiệu quả theo kênh&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;table-responsive&quot;&gt;&lt;table class=&quot;ops-table&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Kênh&lt;/th&gt;&lt;th class=&quot;text-end&quot;&gt;Traffic&lt;/th&gt;&lt;th class=&quot;text-end&quot;&gt;Selfservice&lt;/th&gt;&lt;th class=&quot;text-end&quot;&gt;Agent&lt;/th&gt;&lt;th class=&quot;text-end&quot;&gt;Rate&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;strong&quot;&gt;Hi Chat&lt;/td&gt;&lt;td class=&quot;text-end&quot;&gt;30.852&lt;/td&gt;&lt;td class=&quot;text-end&quot;&gt;24.203&lt;/td&gt;&lt;td class=&quot;text-end&quot;&gt;6.649&lt;/td&gt;&lt;td class=&quot;text-end&quot;&gt;78.4%&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&quot;strong&quot;&gt;Zalo&lt;/td&gt;&lt;td class=&quot;text-end&quot;&gt;9.351&lt;/td&gt;&lt;td class=&quot;text-end&quot;&gt;5.745&lt;/td&gt;&lt;td class=&quot;text-end&quot;&gt;3.606&lt;/td&gt;&lt;td class=&quot;text-end&quot;&gt;61.4%&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&quot;strong&quot;&gt;fpt.vn&lt;/td&gt;&lt;td class=&quot;text-end&quot;&gt;2.579&lt;/td&gt;&lt;td class=&quot;text-end&quot;&gt;1.637&lt;/td&gt;&lt;td class=&quot;text-end&quot;&gt;942&lt;/td&gt;&lt;td class=&quot;text-end&quot;&gt;63.5%&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&quot;strong&quot;&gt;Facebook&lt;/td&gt;&lt;td class=&quot;text-end&quot;&gt;583&lt;/td&gt;&lt;td class=&quot;text-end&quot;&gt;394&lt;/td&gt;&lt;td class=&quot;text-end&quot;&gt;189&lt;/td&gt;&lt;td class=&quot;text-end&quot;&gt;67.6%&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;script&gt;
-const REPORT_DATA={&quot;dates&quot;:[&quot;20/08/2026&quot;,&quot;21/08/2026&quot;,&quot;22/08/2026&quot;,&quot;23/08/2026&quot;,&quot;24/08/2026&quot;,&quot;25/08/2026&quot;,&quot;26/08/2026&quot;],&quot;dailyTotal&quot;:[6291,6059,7277,7012,5693,5615,6241],&quot;dailySelfRate&quot;:[81.43379430933079,79.08895857402212,83.82575237048235,74.52937820878493,77.568944317583,78.4505788067676,74.23489825348501],&quot;dailyAgentRate&quot;:[18.56620569066921,20.911041425977885,16.17424762951766,25.47062179121506,22.431055682417004,21.549421193232412,25.76510174651498],&quot;traffic&quot;:{&quot;channels&quot;:[&quot;Hi Chat&quot;,&quot;Zalo&quot;,&quot;Facebook&quot;],&quot;values&quot;:{&quot;Hi Chat&quot;:[4477,4374,5227,4669,4339,4068,3889],&quot;Zalo&quot;:[1748,1614,1945,2253,1299,1479,2249],&quot;Facebook&quot;:[66,71,105,90,55,68,103]}},&quot;outcome&quot;:{&quot;completed&quot;:26211,&quot;autoSR&quot;:6521,&quot;agent&quot;:11456,&quot;inbound&quot;:44188},&quot;topics&quot;:[{&quot;key&quot;:&quot;OTHER&quot;,&quot;label&quot;:&quot;QnA và khác&quot;,&quot;selfservice&quot;:20848,&quot;agent&quot;:4096,&quot;rate&quot;:0.8357921744708147},{&quot;key&quot;:&quot;HTKT&quot;,&quot;label&quot;:&quot;Hỗ trợ kỹ thuật&quot;,&quot;selfservice&quot;:12792,&quot;agent&quot;:4199,&quot;rate&quot;:0.7528691660290742},{&quot;key&quot;:&quot;TL&quot;,&quot;label&quot;:&quot;Thanh lý&quot;,&quot;selfservice&quot;:1650,&quot;agent&quot;:428,&quot;rate&quot;:0.7940327237728585},{&quot;key&quot;:&quot;PHOTO&quot;,&quot;label&quot;:&quot;Photo&quot;,&quot;selfservice&quot;:1147,&quot;agent&quot;:608,&quot;rate&quot;:0.6535612535612536},{&quot;key&quot;:&quot;TMC&quot;,&quot;label&quot;:&quot;Thắc mắc cước&quot;,&quot;selfservice&quot;:533,&quot;agent&quot;:250,&quot;rate&quot;:0.6807151979565773},{&quot;key&quot;:&quot;DKM&quot;,&quot;label&quot;:&quot;Đăng ký mới&quot;,&quot;selfservice&quot;:692,&quot;agent&quot;:0,&quot;rate&quot;:1},{&quot;key&quot;:&quot;KH&quot;,&quot;label&quot;:&quot;Khiếu nại&quot;,&quot;selfservice&quot;:438,&quot;agent&quot;:97,&quot;rate&quot;:0.8186915887850468}],&quot;channelsSummary&quot;:[{&quot;key&quot;:&quot;Hi FPT Chat&quot;,&quot;label&quot;:&quot;Hi Chat&quot;,&quot;inbound&quot;:31043,&quot;selfservice&quot;:24409,&quot;agent&quot;:6634},{&quot;key&quot;:&quot;Zalo&quot;,&quot;label&quot;:&quot;Zalo&quot;,&quot;inbound&quot;:12587,&quot;selfservice&quot;:7957,&quot;agent&quot;:4630},{&quot;key&quot;:&quot;Facebook&quot;,&quot;label&quot;:&quot;Facebook&quot;,&quot;inbound&quot;:558,&quot;selfservice&quot;:366,&quot;agent&quot;:192}],&quot;token&quot;:{&quot;dates&quot;:[&quot;2026-08-20&quot;,&quot;2026-08-21&quot;,&quot;2026-08-22&quot;,&quot;2026-08-23&quot;,&quot;2026-08-24&quot;,&quot;2026-08-25&quot;,&quot;2026-08-26&quot;],&quot;channels&quot;:[&quot;Zalo&quot;,&quot;Hi Chat&quot;,&quot;Facebook&quot;],&quot;values&quot;:{&quot;Zalo&quot;:[120204936,111611759,152089194,128697032,38067621,192190903,277504675],&quot;Hi Chat&quot;:[119847702,118028265,151505370,118530481,39433143,193753348,197326606],&quot;Facebook&quot;:[5666452,5451142,6033367,5884905,1034569,8442685,10968231]},&quot;totals&quot;:{&quot;Zalo&quot;:1020366120,&quot;Hi Chat&quot;:938424915,&quot;Facebook&quot;:43481351},&quot;total&quot;:2002272386}};
+const REPORT_DATA={&quot;dates&quot;:[&quot;21/08/2026&quot;,&quot;22/08/2026&quot;,&quot;23/08/2026&quot;,&quot;24/08/2026&quot;,&quot;25/08/2026&quot;,&quot;26/08/2026&quot;,&quot;27/08/2026&quot;],&quot;dailyTotal&quot;:[6059,7277,7011,5693,5615,5549,6161],&quot;dailySelfRate&quot;:[78.46179237497937,83.83949429710046,74.52574525745257,77.568944317583,78.4505788067676,79.47377905928997,73.47833143970135],&quot;dailyAgentRate&quot;:[21.53820762502063,16.160505702899545,25.474254742547426,22.431055682417004,21.549421193232412,20.52622094071004,26.52166856029865],&quot;traffic&quot;:{&quot;channels&quot;:[&quot;Hi Chat&quot;,&quot;Zalo&quot;,&quot;fpt.vn&quot;,&quot;Facebook&quot;],&quot;values&quot;:{&quot;Hi Chat&quot;:[4374,5227,4669,4339,4068,3667,4508],&quot;Zalo&quot;:[1278,1493,1710,1009,1254,1335,1272],&quot;fpt.vn&quot;:[336,452,542,290,225,453,281],&quot;Facebook&quot;:[71,105,90,55,68,94,100]}},&quot;outcome&quot;:{&quot;completed&quot;:25415,&quot;autoSR&quot;:6564,&quot;agent&quot;:11386,&quot;inbound&quot;:43365},&quot;topics&quot;:[{&quot;key&quot;:&quot;OTHER&quot;,&quot;label&quot;:&quot;QnA và khác&quot;,&quot;selfservice&quot;:20589,&quot;agent&quot;:3964,&quot;rate&quot;:0.8385533336048548},{&quot;key&quot;:&quot;HTKT&quot;,&quot;label&quot;:&quot;Hỗ trợ kỹ thuật&quot;,&quot;selfservice&quot;:12712,&quot;agent&quot;:4390,&quot;rate&quot;:0.7433048766226172},{&quot;key&quot;:&quot;TL&quot;,&quot;label&quot;:&quot;Thanh lý&quot;,&quot;selfservice&quot;:1636,&quot;agent&quot;:430,&quot;rate&quot;:0.7918683446272992},{&quot;key&quot;:&quot;PHOTO&quot;,&quot;label&quot;:&quot;Photo&quot;,&quot;selfservice&quot;:921,&quot;agent&quot;:601,&quot;rate&quot;:0.6051248357424441},{&quot;key&quot;:&quot;TMC&quot;,&quot;label&quot;:&quot;Thắc mắc cước&quot;,&quot;selfservice&quot;:485,&quot;agent&quot;:236,&quot;rate&quot;:0.6726768377253814},{&quot;key&quot;:&quot;DKM&quot;,&quot;label&quot;:&quot;Đăng ký mới&quot;,&quot;selfservice&quot;:688,&quot;agent&quot;:0,&quot;rate&quot;:1},{&quot;key&quot;:&quot;KH&quot;,&quot;label&quot;:&quot;Khiếu nại&quot;,&quot;selfservice&quot;:419,&quot;agent&quot;:96,&quot;rate&quot;:0.8135922330097087}],&quot;channelsSummary&quot;:[{&quot;key&quot;:&quot;Hi FPT Chat&quot;,&quot;label&quot;:&quot;Hi Chat&quot;,&quot;inbound&quot;:30852,&quot;selfservice&quot;:24203,&quot;agent&quot;:6649},{&quot;key&quot;:&quot;Zalo&quot;,&quot;label&quot;:&quot;Zalo&quot;,&quot;inbound&quot;:9351,&quot;selfservice&quot;:5745,&quot;agent&quot;:3606},{&quot;key&quot;:&quot;fpt.vn&quot;,&quot;label&quot;:&quot;fpt.vn&quot;,&quot;inbound&quot;:2579,&quot;selfservice&quot;:1637,&quot;agent&quot;:942},{&quot;key&quot;:&quot;Facebook&quot;,&quot;label&quot;:&quot;Facebook&quot;,&quot;inbound&quot;:583,&quot;selfservice&quot;:394,&quot;agent&quot;:189}],&quot;token&quot;:{&quot;dates&quot;:[&quot;2026-08-21&quot;,&quot;2026-08-22&quot;,&quot;2026-08-23&quot;,&quot;2026-08-24&quot;,&quot;2026-08-25&quot;,&quot;2026-08-26&quot;,&quot;2026-08-27&quot;],&quot;channels&quot;:[&quot;Zalo&quot;,&quot;Hi Chat&quot;,&quot;Facebook&quot;],&quot;values&quot;:{&quot;Zalo&quot;:[111611759,152089194,128697032,38067621,192190903,277504675,171969072],&quot;Hi Chat&quot;:[118028265,151505370,118530481,39433143,193753348,197326606,197753642],&quot;Facebook&quot;:[5451142,6033367,5884905,1034569,8442685,10968231,8301288]},&quot;totals&quot;:{&quot;Zalo&quot;:1072130256,&quot;Hi Chat&quot;:1016330855,&quot;Facebook&quot;:46116187},&quot;total&quot;:2134577298}};
 const charts={};
 const fmt=n=&gt;new Intl.NumberFormat(&quot;vi-VN&quot;).format(Math.round(Number(n)||0));
 const compact=n=&gt;{
